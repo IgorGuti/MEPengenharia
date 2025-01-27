@@ -1,22 +1,28 @@
 package com.example.myapplication
-
+import android.content.Intent
 import android.os.Bundle
+import android.Manifest
+import android.content.pm.PackageManager
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.ui.fragment.AboutFragment
+import com.example.myapplication.ui.repository.MqttJobIntentService
 import com.example.myapplication.ui.repository.UserViewModel
+import com.google.android.material.navigation.NavigationView
+import android.widget.Toast
+import com.example.myapplication.ui.fragment.AboutFragment
 
-private const val TAG = "MainActivity"
+private const val REQUEST_CODE_POST_NOTIFICATIONS = 1
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,9 +61,42 @@ class MainActivity : AppCompatActivity() {
         // Configura o NavigationView para trabalhar com a navegação
         navView.setupWithNavController(navController)
 
-        // Observa mudanças no LoginResponse
-        userViewModel.loginResponse.observe(this) { loginResponse ->
+        // Verifica se a permissão para exibir notificações foi concedida
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // Solicita permissão ao usuário
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQUEST_CODE_POST_NOTIFICATIONS)
+        } else {
+            // A permissão já foi concedida, podemos enfileirar o serviço MQTT
+            enqueueMqttService()
+        }
 
+        // Observa mudanças no LoginResponse (caso seja necessário para enfileirar o serviço MQTT após login)
+        userViewModel.loginResponse.observe(this) { loginResponse ->
+            // Aqui você pode enfileirar o serviço MQTT assim que necessário
+            // Exemplo de como enfileirar o serviço
+            enqueueMqttService()
+        }
+    }
+
+    private fun enqueueMqttService() {
+        // Cria um Intent para o MqttJobIntentService
+        val intent = Intent(this, MqttJobIntentService::class.java)
+
+        // Enfileira o serviço
+        MqttJobIntentService.enqueueWork(this, intent)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == REQUEST_CODE_POST_NOTIFICATIONS) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permissão concedida, agora podemos enfileirar o serviço MQTT
+                enqueueMqttService()
+            } else {
+                // Permissão negada
+                Toast.makeText(this, "Permissão negada. Não será possível exibir notificações.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

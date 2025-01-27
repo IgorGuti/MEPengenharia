@@ -23,16 +23,16 @@ class ReservatorioAdapter(
 
     private val expandedPositions = mutableSetOf<Int>()
     private val handler = Handler(Looper.getMainLooper())
-    private val logRunnable = object : Runnable {
-        override fun run() {
-            logAllExpansions()
-            handler.postDelayed(this, 15000) // Log every 15 seconds
-        }
-    }
+//    private val logRunnable = object : Runnable {
+//        override fun run() {
+//            logAllExpansions()
+//            handler.postDelayed(this, 15000) // Log every 15 seconds
+//        }
+//    }
 
-    init {
-        handler.post(logRunnable)
-    }
+//    init {
+//        handler.post(logRunnable)
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservatorioViewHolder {
         val itemView = LayoutInflater.from(parent.context)
