@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "6350226183",
-    "project_id": "aquaclean-app",
-    "storage_bucket": "aquaclean-app.appspot.com"
+    "project_number": "816718765562",
+    "project_id": "meptec-32565996",
+    "storage_bucket": "meptec-32565996.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:6350226183:android:a89a06d58c82cf61757ba2",
+        "mobilesdk_app_id": "1:816718765562:android:79023a43b6c8a5330c5843",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.mep.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDyL6wRicEKa5528bQbD9Z79J_GIjq54QM"
+          "current_key": "AIzaSyDbmiAW3-OF1tCqPFqBY228Go-AD04fTYk"
         }
       ],
       "services": {

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.repository
+package com.mep.app.ui.repository
 
 import android.content.Context
 import android.os.Handler
@@ -38,7 +38,7 @@ interface ApiService {
 class ApiRepository(private val context: Context) {
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.1.152:5000/") // Substitua pela URL base da sua API
+        .baseUrl("http://192.168.1.17:3000/") // Substitua pela URL base da sua API
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

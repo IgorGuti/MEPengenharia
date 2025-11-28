@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "com.mep.app"
     compileSdk = rootProject.extra["compileSdkVersion"] as Int
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "com.mep.app"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -53,6 +53,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
+    implementation ("androidx.core:core-ktx:1.10.0")
     implementation("io.insert-koin:koin-core:3.5.0")
     implementation("io.insert-koin:koin-android:3.5.0")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
@@ -63,4 +65,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
     implementation ("com.google.code.gson:gson:2.10.1")
 
+    // --- COMECE AQUI AS DEPENDÊNCIAS FIREBASE ---
+
+    // 1. DEVE SER O PRIMEIRO: A Plataforma BOM
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+
+    // 2. As bibliotecas são declaradas SEM a versão, pois o BOM a define
+    implementation("com.google.firebase:firebase-analytics-ktx") // Adicionei o -ktx (Kotlin)
+    implementation("com.google.firebase:firebase-messaging-ktx")
+
+    // O Analytics está sem o ktx, mas se você não estiver usando,
+    // o Messaging é o mais importante agora
+    // implementation("com.google.firebase:firebase-analytics") // Versão antiga
 }

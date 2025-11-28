@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myapplication.ui.fragment.HomeFragment"
+        android:name="com.mep.app.ui.fragment.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
 
     <fragment android:id="@+id/nav_login"
-        android:name="com.example.myapplication.ui.fragment.LoginFragment"
+        android:name="com.mep.app.ui.fragment.LoginFragment"
         android:label="@string/login"
         tools:layout="@layout/fragment_login"/>
 
@@ -22,13 +22,13 @@
     </fragment>
 
     <fragment android:id="@+id/nav_monitorEletrico"
-        android:name="com.example.myapplication.ui.fragment.MonitorEletricoFragment"
+        android:name="com.mep.app.ui.fragment.MonitorEletricoFragment"
         android:label="@string/monitorEletrico"
         tools:layout="@layout/fragment_list_monitor_eletrico">
     </fragment>
 
     <fragment android:id="@+id/nav_monitorReservatorio"
-        android:name="com.example.myapplication.ui.fragment.MonitorReservatorioFragment"
+        android:name="com.mep.app.ui.fragment.MonitorReservatorioFragment"
         android:label="@string/monitorReservatorio"
         tools:layout="@layout/fragment_list_monitor_eletrico">
     </fragment>
