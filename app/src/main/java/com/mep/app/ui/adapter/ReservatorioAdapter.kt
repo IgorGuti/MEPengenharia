@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.adapter
+package com.mep.app.ui.adapter
 
 import android.os.Handler
 import android.os.Looper
@@ -10,10 +10,10 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.ui.repository.ApiRepository
-import com.example.myapplication.ui.repository.Reservatorio
-import com.example.myapplication.ui.repository.ReservatorioResponse
+import com.mep.app.ui.repository.ApiRepository
+import com.mep.app.ui.repository.Reservatorio
+import com.mep.app.ui.repository.ReservatorioResponse
+import com.mep.app.R
 
 class ReservatorioAdapter(
     private var reservatorioVariavel: List<Reservatorio>,
@@ -23,16 +23,6 @@ class ReservatorioAdapter(
 
     private val expandedPositions = mutableSetOf<Int>()
     private val handler = Handler(Looper.getMainLooper())
-//    private val logRunnable = object : Runnable {
-//        override fun run() {
-//            logAllExpansions()
-//            handler.postDelayed(this, 15000) // Log every 15 seconds
-//        }
-//    }
-
-//    init {
-//        handler.post(logRunnable)
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservatorioViewHolder {
         val itemView = LayoutInflater.from(parent.context)
